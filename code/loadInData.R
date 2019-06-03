@@ -21,7 +21,6 @@ read_in_csv = function () {
   require("RPostgreSQL")
 
   # loads the PostgreSQL driver
-  drv <-  
   # creates a connection to the postgres database
   # note that "con" will be used later in each connection to the database
   con <- dbConnect(dbDriver("PostgreSQL"), 

@@ -1,19 +1,3 @@
----
-title: "Home"
-site: workflowr::wflow_site
-output:
-  workflowr::wflow_html:
-    toc: false
-editor_options:
-  chunk_output_type: console
----
-
-Welcome to my research website.
-
-
-```{r}
-
-
 library(tidyverse)
 library(purrr)
 library(janitor)
@@ -82,6 +66,4 @@ d_vaed %>%
 
 
 
-
-```
 

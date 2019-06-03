@@ -213,17 +213,34 @@ df_audit_long %>%
             hospital_codes =paste( sort( hospital ), collapse=' ') ) %>% 
             { . } -> df_sorted_differences_proc
 
-cat('## Errors that are not mere rearrangments of Procedures')
+cat('## Number of Errors that are not mere rearrangments of Diagnosis codes (alone, excluding prefix)')
+df_sorted_differences_diag %>%
+  filter( hospital_codes != audit_codes ) %>%
+  dim() %>% pluck(1)
+
+
+cat('## Number of Errors that are not mere rearrangments of Procedures')
 df_sorted_differences_proc %>%
   filter( hospital_codes != audit_codes ) %>%
-  distinct( row ) %>% dim() %>% pluck(1)
+  dim() %>% pluck(1)
 
-cat('## Errors that are not mere rearrangments of Diagnosis codes (excluding prefix)')
+
+
 df_sorted_differences_diag %>%
-filter( hospital_codes != audit_codes ) %>%
-  distinct( row ) %>% dim() %>% pluck(1)
+  filter( hospital_codes != audit_codes ) %>% 
+  { . } -> df_diag_error_bag_o_codes
 
 
+df_sorted_differences_proc %>%
+  filter( hospital_codes != audit_codes ) %>%
+  { . } -> df_proc_error_bag_o_codes
+
+
+```
+
+## find errors that include prefix and diag_code
+
+```{r }
 
 df_audit_long %>%
   filter( audit != hospital) %>% 
@@ -250,8 +267,114 @@ filter( hospital_codes != audit_codes ) %>%
 
 ```
 
+# what is the extent of the different codesets in VAED over the 4 years?
+
+How many 'codesets' are there, that is, sets of codes, in a certain order.  What is the most popular codesets?
 
 ```{r }
+
+df_vaed %>% 
+  mutate( row = row_number()) %>%
+  gather( code, value, -row ) %>% 
+  { . } -> df_vaed_long
+
+
+df_vaed_long %>%
+  filter( !is.na( value ) & startsWith( code,'diag')) %>%
+  mutate( code = str_remove( code, 'diag') %>% as.numeric()) %>%
+  group_by( row ) %>%
+  arrange( code ) %>%
+  summarise( diag = paste( value, collapse=' ')) %>% 
+  { . } -> df_diag_signature_in_order 
+
+
+cat( 'most popular diagnosis codeset in coded order')
+df_diag_signature_in_order %>%
+  count( diag, sort=TRUE ) %>%
+  head(10)
+
+
+df_vaed_long %>%
+  filter( !is.na( value ) & startsWith( code,'oper')) %>%
+  mutate( code = str_remove( code, 'oper') %>% as.numeric()) %>%
+  group_by( row ) %>%
+  arrange( code ) %>%
+  summarise( oper = paste( value, collapse=' ')) %>% 
+  { . } -> df_oper_signature_in_order
+
+cat( 'most popular procedure codeset in coded order')
+df_oper_signature_in_order %>%
+  count( oper, sort=TRUE ) %>%
+  head(10)
+
+
 ```
+
+# how popular are the error codesets
+
+```{r}
+# convert vaed into sorted by code (not order), and then match it to error and corrected
+
+df_vaed_long %>%
+  filter( startsWith( code, 'diag' )) %>%
+  group_by( row ) %>%
+  summarise( diag = paste( sort( value ), collapse=' ')) %>% 
+  { . } -> df_vaed_sorted_diag
+#
+df_vaed_long %>%
+  filter( startsWith( code, 'oper' )) %>%
+  group_by( row ) %>%
+  summarise( oper = paste( sort( value ), collapse=' ')) %>% 
+  { . } -> df_vaed_sorted_oper
+
+cat( 'popularity of diagnosis bag o codes ')
+df_vaed_sorted_diag %>%
+  count( diag, sort=TRUE ) %>%
+  head(10)
+
+
+cat( 'popularity of procedure bag o codes ')
+df_vaed_sorted_oper %>%
+  count( diag, sort=TRUE ) %>%
+  head(10)
+
+df_vaed_sorted_diag %>%
+  inner_join( df_diag_error_bag_o_codes, by=c('diag' = 'hospital_codes' )) %>% 
+  { . } -> df_vaed_diag_error_occurence
+
+cat( 'popularity of error prone procedure bag o codes ')
+df_vaed_diag_error_occurence
+
+
+df_vaed_sorted_oper %>%
+  inner_join( df_proc_error_bag_o_codes, by=c('oper' = 'hospital_codes' )) %>% 
+  { . } -> df_vaed_oper_error_occurence
+
+cat( 'popularity of error prone procedure bag o codes ')
+df_vaed_oper_error_occurence
+
+
+```
+# Questions
+-  what is the range of diag/procedure/diag+prefix codes
+## what do the errors look like - the audit data; 
+-  can we tell if a coding is wrong merely by the codes that have been coded, without information from the actual medical record
+-  # of audits
+-  what kind of audit differences (errors), which section
+- are the errors mere rearrangments or are they different codes
+## at what frequency do the audit error and corrected codesets occur in standard codings
+
+
+# Auto encoder
+can we encapsulate the information in codes in a few layers of N?
+Can we create an embedding for codes?
+
+```{r}
+```
+
+
+
+
+
 
 
