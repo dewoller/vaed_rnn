@@ -1,0 +1,257 @@
+---
+title: "Home"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+#Load libraries
+
+
+```{r}
+# load libraries
+library(knitr)
+opts_chunk$set(warning=F,message=F,fig.width = 11,fig.height = 5,cache=F)
+
+library(tidyverse)
+library(purrr)
+library(janitor)
+
+```
+
+ # read in data
+```{r}
+
+#system.time(    
+#  read_csv('vijaya_data/all.csv.gz') %>%
+#    clean_names () %>% 
+#    { . } -> all
+#  )
+
+library("RPostgreSQL")
+
+# loads the PostgreSQL driver
+  # creates a connection to the postgres database
+  # note that "con" will be used later in each connection to the database
+  con <- dbConnect(dbDriver("PostgreSQL"), 
+                   dbname = "vijaya_vaed",
+                   host = "localhost", port = 5432,
+                   user = "dewoller", password  = Sys.getenv('PASSWD'))
+
+# check for the cartable
+
+df_vaed  = dbReadTable(con, name='vaed' ) %>% as_tibble()
+
+df_audit  = dbReadTable(con, name='audit' ) %>% as_tibble()
+
+```
+
+
+# Explore paramemters
+
+```{r }
+
+df_vaed %>% 
+  select( starts_with('diag' ) ) %>%
+  gather( pos, diag ) %>%
+  filter( !is.na( diag )) %>% 
+  { . } -> df_vaed_diag_long
+
+
+
+df_vaed %>%
+  select( starts_with('oper' ) ) %>%
+  gather( pos, oper ) %>%
+  filter( !is.na( oper )) %>% 
+  { . } -> df_vaed_oper_long
+
+df_vaed %>% distinct( age_group ) %>% c()
+
+cat('## number of distinct PDx')
+df_vaed_diag_long %>%
+  filter( pos == 'diag1') %>%
+  count( diag, sort=TRUE) %>% 
+  dim() %>% 
+  pluck(1)
+
+```
+
+# Distinct value
+
+```{r Number of distinct values}
+
+df_vaed_diag_long %>%
+  count( diag, sort=TRUE) %>% 
+  dim() %>% 
+  pluck(1)
+
+
+df_vaed_oper_long %>%
+  count( oper, sort=TRUE) %>% 
+  dim() %>% 
+  pluck(1)
+
+```
+
+# Audit data Columns
+
+```{r Audit_data}
+
+
+df_audit %>%
+  select( starts_with('hospital')) %>%
+  names()
+
+df_audit %>%
+  select( starts_with('audit')) %>% 
+  names()
+
+```
+
+# What fields are not matching audit hospital pairs
+
+
+```{r }
+
+df_audit %>%
+  select( 
+         -starts_with('hospital')
+         , -starts_with('audit')
+         ) %>% names()
+
+df_audit %>% 
+  select( ends_with('flag')) %>% names()
+```
+
+# make audit data long
+
+```{r }
+
+df_audit %>%
+  mutate( row = row_number()) %>%
+  select( row, starts_with('audit')
+        , starts_with('hospital')) %>%
+  gather( code, value, -row ) %>%
+  separate( code, into=c('which', 'col' ), sep='_', n=2, extra='merge') %>%
+  spread( which,value) %>% 
+  filter( !is.na( hospital) & !is.na( audit )) %>%
+  { . } -> df_audit_long
+
+
+```
+
+# How many audit records alltogether, and 
+
+
+```{r }
+df_audit %>% dim() %>% pluck(1)
+
+
+```
+
+# How many audit records have some sort of change
+
+
+```{r }
+df_audit_long %>%
+  filter( audit != hospital) %>% 
+  distinct(row) %>%
+  dim() %>%
+  pluck(1)
+
+```
+About 1/2 of audited records have corrections
+
+# How many corrections in each of the categories 
+
+
+```{r }
+
+df_audit_long %>%
+  filter( startsWith( col, 'admission' )) %>%
+  filter( audit != hospital) %>% 
+  distinct(row) %>%
+  dim() %>%
+  pluck(1)
+
+df_audit_long %>%
+  filter( startsWith( col, 'diagnosis_code' )) %>%
+  filter( audit != hospital) %>% 
+  distinct(row) %>%
+  dim() %>%
+  pluck(1)
+
+df_audit_long %>%
+  filter( startsWith( col, 'proc' )) %>%
+  filter( audit != hospital) %>% 
+  distinct(row) %>%
+  dim() %>%
+  pluck(1)
+
+```
+
+# how much of the difference is merely a rearrangement of the codes?
+
+```{r Audit_difference}
+
+df_audit_long %>%
+  filter( startsWith( col, 'diagnosis_code' )) %>%
+  filter( audit != hospital) %>% 
+  group_by( row ) %>%
+  summarise( audit_codes = paste( sort( audit ), collapse=' '), 
+            hospital_codes =paste( sort( hospital ), collapse=' ') ) %>% 
+  { . } -> df_sorted_differences_diag
+
+df_audit_long %>%
+  filter( startsWith( col, 'proc' )) %>%
+  filter( audit != hospital) %>% 
+  group_by( row ) %>%
+  summarise( audit_codes = paste( sort( audit ), collapse=' '), 
+            hospital_codes =paste( sort( hospital ), collapse=' ') ) %>% 
+            { . } -> df_sorted_differences_proc
+
+cat('## Errors that are not mere rearrangments of Procedures')
+df_sorted_differences_proc %>%
+  filter( hospital_codes != audit_codes ) %>%
+  distinct( row ) %>% dim() %>% pluck(1)
+
+cat('## Errors that are not mere rearrangments of Diagnosis codes (excluding prefix)')
+df_sorted_differences_diag %>%
+filter( hospital_codes != audit_codes ) %>%
+  distinct( row ) %>% dim() %>% pluck(1)
+
+
+
+df_audit_long %>%
+  filter( audit != hospital) %>% 
+  filter( startsWith( col, 'diagnosis' )) %>%
+  mutate( type = ifelse( startsWith( col, 'diagnosis_code'), 'D', 'P' ), 
+         pos = str_replace_all( col, '[a-z_]','') %>% as.numeric()) %>%
+  select( -col) %>%
+  gather( institution, code, -row, -type, -pos ) %>%
+  spread( type, code ) %>%
+  mutate( P = ifelse( is.na(P), ' ', P ),
+         full = paste( P,D)) %>%
+  select( -D, -P ) %>%
+  spread( institution, full) %>%
+  group_by( row ) %>%
+  summarise( audit_codes = paste( sort( audit ), collapse=' '), 
+            hospital_codes =paste( sort( hospital ), collapse=' ') ) %>% 
+  { . } -> df_sorted_differences_diag_prefix
+
+cat("## number of cases where there is a problem with prefix and/or codes, separate from rearrangment")
+
+df_sorted_differences_diag_prefix %>%
+filter( hospital_codes != audit_codes ) %>%
+  distinct( row ) %>% dim() %>% pluck(1)
+
+```
+
+
+```{r }
+```
+
+
