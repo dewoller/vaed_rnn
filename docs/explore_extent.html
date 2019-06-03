@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Home</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">vijaya_vaed_wf</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Home</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2019-06-03
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>vijaya_vaed_wf/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.3.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20190603code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20190603)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20190603code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20190603)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrong66874c3"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> 66874c3 </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrong66874c3" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Untracked files:
+    Untracked:  code/ehr_source_variability.R
+    Untracked:  code/explore.R
+    Untracked:  vijaya_data
+
+Unstaged changes:
+    Modified:   analysis/index.Rmd
+    Modified:   code/loadInData.R
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the R Markdown and HTML files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view them.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+66874c3
+</td>
+<td>
+Dennis Wollersheim
+</td>
+<td>
+2019-06-03
+</td>
+<td>
+wflow_publish(“analysis/explore_extent.Rmd”)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<div id="load-libraries" class="section level1">
+<h1>Load libraries</h1>
+<pre class="r"><code># load libraries
+library(knitr)
+opts_chunk$set(warning=F,message=F,fig.width = 11,fig.height = 5,cache=F)
+
+library(tidyverse)</code></pre>
+<pre><code>── Attaching packages ────────────────────────────────── tidyverse 1.2.1 ──</code></pre>
+<pre><code>✔ ggplot2 3.1.1     ✔ purrr   0.3.2
+✔ tibble  2.1.2     ✔ dplyr   0.8.1
+✔ tidyr   0.8.3     ✔ stringr 1.4.0
+✔ readr   1.3.1     ✔ forcats 0.4.0</code></pre>
+<pre><code>── Conflicts ───────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(purrr)
+library(janitor)</code></pre>
+<pre><code>
+Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>The following objects are masked from &#39;package:stats&#39;:
+
+    chisq.test, fisher.test</code></pre>
+<p># read in data</p>
+<pre class="r"><code>#system.time(    
+#  read_csv(&#39;vijaya_data/all.csv.gz&#39;) %&gt;%
+#    clean_names () %&gt;% 
+#    { . } -&gt; all
+#  )
+
+library(&quot;RPostgreSQL&quot;)
+
+# loads the PostgreSQL driver
+  # creates a connection to the postgres database
+  # note that &quot;con&quot; will be used later in each connection to the database
+  con &lt;- dbConnect(dbDriver(&quot;PostgreSQL&quot;), 
+                   dbname = &quot;vijaya_vaed&quot;,
+                   host = &quot;localhost&quot;, port = 5432,
+                   user = &quot;dewoller&quot;, password  = Sys.getenv(&#39;PASSWD&#39;))
+
+# check for the cartable
+
+df_vaed  = dbReadTable(con, name=&#39;vaed&#39; ) %&gt;% as_tibble()
+
+df_audit  = dbReadTable(con, name=&#39;audit&#39; ) %&gt;% as_tibble()</code></pre>
+</div>
+<div id="explore-paramemters" class="section level1">
+<h1>Explore paramemters</h1>
+<pre class="r"><code>df_vaed %&gt;% 
+  select( starts_with(&#39;diag&#39; ) ) %&gt;%
+  gather( pos, diag ) %&gt;%
+  filter( !is.na( diag )) %&gt;% 
+  { . } -&gt; df_vaed_diag_long
+
+
+
+df_vaed %&gt;%
+  select( starts_with(&#39;oper&#39; ) ) %&gt;%
+  gather( pos, oper ) %&gt;%
+  filter( !is.na( oper )) %&gt;% 
+  { . } -&gt; df_vaed_oper_long
+
+df_vaed %&gt;% distinct( age_group ) %&gt;% c()</code></pre>
+<pre><code>$age_group
+ [1] &quot;65 to 69&quot; &quot;45 to 49&quot; &quot;40 to 44&quot; &quot;20 to 24&quot; &quot;70 to 74&quot; &quot;80 to 84&quot;
+ [7] &quot;75 to 79&quot; &quot;90 to 94&quot; &quot;30 to 34&quot; &quot;00 to 04&quot; &quot;25 to 29&quot; &quot;35 to 39&quot;
+[13] &quot;50 to 54&quot; &quot;15 to 19&quot; &quot;60 to 64&quot; &quot;85 to 89&quot; &quot;55 to 59&quot; &quot;10 to 14&quot;
+[19] &quot;05 to 09&quot; &quot;95 to 99&quot; &quot;99+&quot;     </code></pre>
+<pre class="r"><code>cat(&#39;## number of distinct PDx&#39;)</code></pre>
+<pre><code>## number of distinct PDx</code></pre>
+<pre class="r"><code>df_vaed_diag_long %&gt;%
+  filter( pos == &#39;diag1&#39;) %&gt;%
+  count( diag, sort=TRUE) %&gt;% 
+  dim() %&gt;% 
+  pluck(1)</code></pre>
+<pre><code>[1] 9434</code></pre>
+</div>
+<div id="distinct-value" class="section level1">
+<h1>Distinct value</h1>
+<pre class="r"><code>df_vaed_diag_long %&gt;%
+  count( diag, sort=TRUE) %&gt;% 
+  dim() %&gt;% 
+  pluck(1)</code></pre>
+<pre><code>[1] 14471</code></pre>
+<pre class="r"><code>df_vaed_oper_long %&gt;%
+  count( oper, sort=TRUE) %&gt;% 
+  dim() %&gt;% 
+  pluck(1)</code></pre>
+<pre><code>[1] 5454</code></pre>
+</div>
+<div id="audit-data-columns" class="section level1">
+<h1>Audit data Columns</h1>
+<pre class="r"><code>df_audit %&gt;%
+  select( starts_with(&#39;hospital&#39;)) %&gt;%
+  names()</code></pre>
+<pre><code>  [1] &quot;hospital_sex&quot;                &quot;hospital_icu_hours&quot;         
+  [3] &quot;hospital_drg_code&quot;           &quot;hospital_diagnosis_prefix1&quot; 
+  [5] &quot;hospital_diagnosis_code1&quot;    &quot;hospital_diagnosis_prefix2&quot; 
+  [7] &quot;hospital_diagnosis_code2&quot;    &quot;hospital_diagnosis_prefix3&quot; 
+  [9] &quot;hospital_diagnosis_code3&quot;    &quot;hospital_diagnosis_prefix4&quot; 
+ [11] &quot;hospital_diagnosis_code4&quot;    &quot;hospital_diagnosis_prefix5&quot; 
+ [13] &quot;hospital_diagnosis_code5&quot;    &quot;hospital_diagnosis_prefix6&quot; 
+ [15] &quot;hospital_diagnosis_code6&quot;    &quot;hospital_diagnosis_prefix7&quot; 
+ [17] &quot;hospital_diagnosis_code7&quot;    &quot;hospital_diagnosis_prefix8&quot; 
+ [19] &quot;hospital_diagnosis_code8&quot;    &quot;hospital_diagnosis_prefix9&quot; 
+ [21] &quot;hospital_diagnosis_code9&quot;    &quot;hospital_diagnosis_prefix10&quot;
+ [23] &quot;hospital_diagnosis_code10&quot;   &quot;hospital_diagnosis_prefix11&quot;
+ [25] &quot;hospital_diagnosis_code11&quot;   &quot;hospital_diagnosis_prefix12&quot;
+ [27] &quot;hospital_diagnosis_code12&quot;   &quot;hospital_diagnosis_prefix13&quot;
+ [29] &quot;hospital_diagnosis_code13&quot;   &quot;hospital_diagnosis_prefix14&quot;
+ [31] &quot;hospital_diagnosis_code14&quot;   &quot;hospital_diagnosis_prefix15&quot;
+ [33] &quot;hospital_diagnosis_code15&quot;   &quot;hospital_diagnosis_prefix16&quot;
+ [35] &quot;hospital_diagnosis_code16&quot;   &quot;hospital_diagnosis_prefix17&quot;
+ [37] &quot;hospital_diagnosis_code17&quot;   &quot;hospital_diagnosis_prefix18&quot;
+ [39] &quot;hospital_diagnosis_code18&quot;   &quot;hospital_diagnosis_prefix19&quot;
+ [41] &quot;hospital_diagnosis_code19&quot;   &quot;hospital_diagnosis_prefix20&quot;
+ [43] &quot;hospital_diagnosis_code20&quot;   &quot;hospital_diagnosis_prefix21&quot;
+ [45] &quot;hospital_diagnosis_code21&quot;   &quot;hospital_diagnosis_prefix22&quot;
+ [47] &quot;hospital_diagnosis_code22&quot;   &quot;hospital_diagnosis_prefix23&quot;
+ [49] &quot;hospital_diagnosis_code23&quot;   &quot;hospital_diagnosis_prefix24&quot;
+ [51] &quot;hospital_diagnosis_code24&quot;   &quot;hospital_diagnosis_prefix25&quot;
+ [53] &quot;hospital_diagnosis_code25&quot;   &quot;hospital_diagnosis_prefix26&quot;
+ [55] &quot;hospital_diagnosis_code26&quot;   &quot;hospital_diagnosis_prefix27&quot;
+ [57] &quot;hospital_diagnosis_code27&quot;   &quot;hospital_diagnosis_prefix28&quot;
+ [59] &quot;hospital_diagnosis_code28&quot;   &quot;hospital_diagnosis_prefix29&quot;
+ [61] &quot;hospital_diagnosis_code29&quot;   &quot;hospital_diagnosis_prefix30&quot;
+ [63] &quot;hospital_diagnosis_code30&quot;   &quot;hospital_diagnosis_prefix31&quot;
+ [65] &quot;hospital_diagnosis_code31&quot;   &quot;hospital_diagnosis_prefix32&quot;
+ [67] &quot;hospital_diagnosis_code32&quot;   &quot;hospital_diagnosis_prefix33&quot;
+ [69] &quot;hospital_diagnosis_code33&quot;   &quot;hospital_diagnosis_prefix34&quot;
+ [71] &quot;hospital_diagnosis_code34&quot;   &quot;hospital_diagnosis_prefix35&quot;
+ [73] &quot;hospital_diagnosis_code35&quot;   &quot;hospital_diagnosis_prefix36&quot;
+ [75] &quot;hospital_diagnosis_code36&quot;   &quot;hospital_diagnosis_prefix37&quot;
+ [77] &quot;hospital_diagnosis_code37&quot;   &quot;hospital_diagnosis_prefix38&quot;
+ [79] &quot;hospital_diagnosis_code38&quot;   &quot;hospital_diagnosis_prefix39&quot;
+ [81] &quot;hospital_diagnosis_code39&quot;   &quot;hospital_diagnosis_prefix40&quot;
+ [83] &quot;hospital_diagnosis_code40&quot;   &quot;hospital_procedure_code1&quot;   
+ [85] &quot;hospital_procedure_code2&quot;    &quot;hospital_procedure_code3&quot;   
+ [87] &quot;hospital_procedure_code4&quot;    &quot;hospital_procedure_code5&quot;   
+ [89] &quot;hospital_procedure_code6&quot;    &quot;hospital_procedure_code7&quot;   
+ [91] &quot;hospital_procedure_code8&quot;    &quot;hospital_procedure_code9&quot;   
+ [93] &quot;hospital_procedure_code10&quot;   &quot;hospital_procedure_code11&quot;  
+ [95] &quot;hospital_procedure_code12&quot;   &quot;hospital_procedure_code13&quot;  
+ [97] &quot;hospital_procedure_code14&quot;   &quot;hospital_procedure_code15&quot;  
+ [99] &quot;hospital_procedure_code16&quot;   &quot;hospital_procedure_code17&quot;  
+[101] &quot;hospital_procedure_code18&quot;   &quot;hospital_procedure_code19&quot;  
+[103] &quot;hospital_procedure_code20&quot;   &quot;hospital_procedure_code21&quot;  
+[105] &quot;hospital_procedure_code22&quot;   &quot;hospital_procedure_code23&quot;  
+[107] &quot;hospital_procedure_code24&quot;   &quot;hospital_procedure_code25&quot;  
+[109] &quot;hospital_procedure_code26&quot;   &quot;hospital_procedure_code27&quot;  
+[111] &quot;hospital_procedure_code28&quot;   &quot;hospital_procedure_code29&quot;  
+[113] &quot;hospital_procedure_code30&quot;   &quot;hospital_procedure_code31&quot;  
+[115] &quot;hospital_procedure_code32&quot;   &quot;hospital_procedure_code33&quot;  
+[117] &quot;hospital_procedure_code34&quot;   &quot;hospital_procedure_code35&quot;  
+[119] &quot;hospital_procedure_code36&quot;   &quot;hospital_procedure_code37&quot;  
+[121] &quot;hospital_procedure_code38&quot;   &quot;hospital_procedure_code39&quot;  
+[123] &quot;hospital_procedure_code40&quot;   &quot;hospital_admission_source&quot;  
+[125] &quot;hospital_admission_type&quot;    </code></pre>
+<pre class="r"><code>df_audit %&gt;%
+  select( starts_with(&#39;audit&#39;)) %&gt;% 
+  names()</code></pre>
+<pre><code>  [1] &quot;audit_sex&quot;                &quot;audit_icu_hours&quot;         
+  [3] &quot;audit_drg_code&quot;           &quot;audit_diagnosis_prefix1&quot; 
+  [5] &quot;audit_diagnosis_code1&quot;    &quot;audit_diagnosis_prefix2&quot; 
+  [7] &quot;audit_diagnosis_code2&quot;    &quot;audit_diagnosis_prefix3&quot; 
+  [9] &quot;audit_diagnosis_code3&quot;    &quot;audit_diagnosis_prefix4&quot; 
+ [11] &quot;audit_diagnosis_code4&quot;    &quot;audit_diagnosis_prefix5&quot; 
+ [13] &quot;audit_diagnosis_code5&quot;    &quot;audit_diagnosis_prefix6&quot; 
+ [15] &quot;audit_diagnosis_code6&quot;    &quot;audit_diagnosis_prefix7&quot; 
+ [17] &quot;audit_diagnosis_code7&quot;    &quot;audit_diagnosis_prefix8&quot; 
+ [19] &quot;audit_diagnosis_code8&quot;    &quot;audit_diagnosis_prefix9&quot; 
+ [21] &quot;audit_diagnosis_code9&quot;    &quot;audit_diagnosis_prefix10&quot;
+ [23] &quot;audit_diagnosis_code10&quot;   &quot;audit_diagnosis_prefix11&quot;
+ [25] &quot;audit_diagnosis_code11&quot;   &quot;audit_diagnosis_prefix12&quot;
+ [27] &quot;audit_diagnosis_code12&quot;   &quot;audit_diagnosis_prefix13&quot;
+ [29] &quot;audit_diagnosis_code13&quot;   &quot;audit_diagnosis_prefix14&quot;
+ [31] &quot;audit_diagnosis_code14&quot;   &quot;audit_diagnosis_prefix15&quot;
+ [33] &quot;audit_diagnosis_code15&quot;   &quot;audit_diagnosis_prefix16&quot;
+ [35] &quot;audit_diagnosis_code16&quot;   &quot;audit_diagnosis_prefix17&quot;
+ [37] &quot;audit_diagnosis_code17&quot;   &quot;audit_diagnosis_prefix18&quot;
+ [39] &quot;audit_diagnosis_code18&quot;   &quot;audit_diagnosis_prefix19&quot;
+ [41] &quot;audit_diagnosis_code19&quot;   &quot;audit_diagnosis_prefix20&quot;
+ [43] &quot;audit_diagnosis_code20&quot;   &quot;audit_diagnosis_prefix21&quot;
+ [45] &quot;audit_diagnosis_code21&quot;   &quot;audit_diagnosis_prefix22&quot;
+ [47] &quot;audit_diagnosis_code22&quot;   &quot;audit_diagnosis_prefix23&quot;
+ [49] &quot;audit_diagnosis_code23&quot;   &quot;audit_diagnosis_prefix24&quot;
+ [51] &quot;audit_diagnosis_code24&quot;   &quot;audit_diagnosis_prefix25&quot;
+ [53] &quot;audit_diagnosis_code25&quot;   &quot;audit_diagnosis_prefix26&quot;
+ [55] &quot;audit_diagnosis_code26&quot;   &quot;audit_diagnosis_prefix27&quot;
+ [57] &quot;audit_diagnosis_code27&quot;   &quot;audit_diagnosis_prefix28&quot;
+ [59] &quot;audit_diagnosis_code28&quot;   &quot;audit_diagnosis_prefix29&quot;
+ [61] &quot;audit_diagnosis_code29&quot;   &quot;audit_diagnosis_prefix30&quot;
+ [63] &quot;audit_diagnosis_code30&quot;   &quot;audit_diagnosis_prefix31&quot;
+ [65] &quot;audit_diagnosis_code31&quot;   &quot;audit_diagnosis_prefix32&quot;
+ [67] &quot;audit_diagnosis_code32&quot;   &quot;audit_diagnosis_prefix33&quot;
+ [69] &quot;audit_diagnosis_code33&quot;   &quot;audit_diagnosis_prefix34&quot;
+ [71] &quot;audit_diagnosis_code34&quot;   &quot;audit_diagnosis_prefix35&quot;
+ [73] &quot;audit_diagnosis_code35&quot;   &quot;audit_diagnosis_prefix36&quot;
+ [75] &quot;audit_diagnosis_code36&quot;   &quot;audit_diagnosis_prefix37&quot;
+ [77] &quot;audit_diagnosis_code37&quot;   &quot;audit_diagnosis_prefix38&quot;
+ [79] &quot;audit_diagnosis_code38&quot;   &quot;audit_diagnosis_prefix39&quot;
+ [81] &quot;audit_diagnosis_code39&quot;   &quot;audit_diagnosis_prefix40&quot;
+ [83] &quot;audit_diagnosis_code40&quot;   &quot;audit_procedure_code1&quot;   
+ [85] &quot;audit_procedure_code2&quot;    &quot;audit_procedure_code3&quot;   
+ [87] &quot;audit_procedure_code4&quot;    &quot;audit_procedure_code5&quot;   
+ [89] &quot;audit_procedure_code6&quot;    &quot;audit_procedure_code7&quot;   
+ [91] &quot;audit_procedure_code8&quot;    &quot;audit_procedure_code9&quot;   
+ [93] &quot;audit_procedure_code10&quot;   &quot;audit_procedure_code11&quot;  
+ [95] &quot;audit_procedure_code12&quot;   &quot;audit_procedure_code13&quot;  
+ [97] &quot;audit_procedure_code14&quot;   &quot;audit_procedure_code15&quot;  
+ [99] &quot;audit_procedure_code16&quot;   &quot;audit_procedure_code17&quot;  
+[101] &quot;audit_procedure_code18&quot;   &quot;audit_procedure_code19&quot;  
+[103] &quot;audit_procedure_code20&quot;   &quot;audit_procedure_code21&quot;  
+[105] &quot;audit_procedure_code22&quot;   &quot;audit_procedure_code23&quot;  
+[107] &quot;audit_procedure_code24&quot;   &quot;audit_procedure_code25&quot;  
+[109] &quot;audit_procedure_code26&quot;   &quot;audit_procedure_code27&quot;  
+[111] &quot;audit_procedure_code28&quot;   &quot;audit_procedure_code29&quot;  
+[113] &quot;audit_procedure_code30&quot;   &quot;audit_procedure_code31&quot;  
+[115] &quot;audit_procedure_code32&quot;   &quot;audit_procedure_code33&quot;  
+[117] &quot;audit_procedure_code34&quot;   &quot;audit_procedure_code35&quot;  
+[119] &quot;audit_procedure_code36&quot;   &quot;audit_procedure_code37&quot;  
+[121] &quot;audit_procedure_code38&quot;   &quot;audit_procedure_code39&quot;  
+[123] &quot;audit_procedure_code40&quot;   &quot;audit_admission_source&quot;  
+[125] &quot;audit_admission_type&quot;    </code></pre>
+</div>
+<div id="what-fields-are-not-matching-audit-hospital-pairs" class="section level1">
+<h1>What fields are not matching audit hospital pairs</h1>
+<pre class="r"><code>df_audit %&gt;%
+  select( 
+         -starts_with(&#39;hospital&#39;)
+         , -starts_with(&#39;audit&#39;)
+         ) %&gt;% names()</code></pre>
+<pre><code> [1] &quot;encrypted_hospital_code&quot;          
+ [2] &quot;derived_hospital_separation_year&quot; 
+ [3] &quot;derived_audit_separation_year&quot;    
+ [4] &quot;derived_hospital_separation_month&quot;
+ [5] &quot;derived_audit_separation_month&quot;   
+ [6] &quot;derived_hospital_los&quot;             
+ [7] &quot;derived_audit_los&quot;                
+ [8] &quot;derived_hospital_age_group&quot;       
+ [9] &quot;derived_audit_age_group&quot;          
+[10] &quot;same_day_flag&quot;                    </code></pre>
+<pre class="r"><code>df_audit %&gt;% 
+  select( ends_with(&#39;flag&#39;)) %&gt;% names()</code></pre>
+<pre><code>[1] &quot;same_day_flag&quot;</code></pre>
+</div>
+<div id="make-audit-data-long" class="section level1">
+<h1>make audit data long</h1>
+<pre class="r"><code>df_audit %&gt;%
+  mutate( row = row_number()) %&gt;%
+  select( row, starts_with(&#39;audit&#39;)
+        , starts_with(&#39;hospital&#39;)) %&gt;%
+  gather( code, value, -row ) %&gt;%
+  separate( code, into=c(&#39;which&#39;, &#39;col&#39; ), sep=&#39;_&#39;, n=2, extra=&#39;merge&#39;) %&gt;%
+  spread( which,value) %&gt;% 
+  filter( !is.na( hospital) &amp; !is.na( audit )) %&gt;%
+  { . } -&gt; df_audit_long</code></pre>
+</div>
+<div id="how-many-audit-records-alltogether-and" class="section level1">
+<h1>How many audit records alltogether, and</h1>
+<pre class="r"><code>df_audit %&gt;% dim() %&gt;% pluck(1)</code></pre>
+<pre><code>[1] 31421</code></pre>
+</div>
+<div id="how-many-audit-records-have-some-sort-of-change" class="section level1">
+<h1>How many audit records have some sort of change</h1>
+<pre class="r"><code>df_audit_long %&gt;%
+  filter( audit != hospital) %&gt;% 
+  distinct(row) %&gt;%
+  dim() %&gt;%
+  pluck(1)</code></pre>
+<pre><code>[1] 16018</code></pre>
+<p>About 1/2 of audited records have corrections</p>
+</div>
+<div id="how-many-corrections-in-each-of-the-categories" class="section level1">
+<h1>How many corrections in each of the categories</h1>
+<pre class="r"><code>df_audit_long %&gt;%
+  filter( startsWith( col, &#39;admission&#39; )) %&gt;%
+  filter( audit != hospital) %&gt;% 
+  distinct(row) %&gt;%
+  dim() %&gt;%
+  pluck(1)</code></pre>
+<pre><code>[1] 1018</code></pre>
+<pre class="r"><code>df_audit_long %&gt;%
+  filter( startsWith( col, &#39;diagnosis_code&#39; )) %&gt;%
+  filter( audit != hospital) %&gt;% 
+  distinct(row) %&gt;%
+  dim() %&gt;%
+  pluck(1)</code></pre>
+<pre><code>[1] 12314</code></pre>
+<pre class="r"><code>df_audit_long %&gt;%
+  filter( startsWith( col, &#39;proc&#39; )) %&gt;%
+  filter( audit != hospital) %&gt;% 
+  distinct(row) %&gt;%
+  dim() %&gt;%
+  pluck(1)</code></pre>
+<pre><code>[1] 6088</code></pre>
+</div>
+<div id="how-much-of-the-difference-is-merely-a-rearrangement-of-the-codes" class="section level1">
+<h1>how much of the difference is merely a rearrangement of the codes?</h1>
+<pre class="r"><code>df_audit_long %&gt;%
+  filter( startsWith( col, &#39;diagnosis_code&#39; )) %&gt;%
+  filter( audit != hospital) %&gt;% 
+  group_by( row ) %&gt;%
+  summarise( audit_codes = paste( sort( audit ), collapse=&#39; &#39;), 
+            hospital_codes =paste( sort( hospital ), collapse=&#39; &#39;) ) %&gt;% 
+  { . } -&gt; df_sorted_differences_diag
+
+df_audit_long %&gt;%
+  filter( startsWith( col, &#39;proc&#39; )) %&gt;%
+  filter( audit != hospital) %&gt;% 
+  group_by( row ) %&gt;%
+  summarise( audit_codes = paste( sort( audit ), collapse=&#39; &#39;), 
+            hospital_codes =paste( sort( hospital ), collapse=&#39; &#39;) ) %&gt;% 
+            { . } -&gt; df_sorted_differences_proc
+
+cat(&#39;## Errors that are not mere rearrangments of Procedures&#39;)</code></pre>
+<pre><code>## Errors that are not mere rearrangments of Procedures</code></pre>
+<pre class="r"><code>df_sorted_differences_proc %&gt;%
+  filter( hospital_codes != audit_codes ) %&gt;%
+  distinct( row ) %&gt;% dim() %&gt;% pluck(1)</code></pre>
+<pre><code>[1] 2969</code></pre>
+<pre class="r"><code>cat(&#39;## Errors that are not mere rearrangments of Diagnosis codes (excluding prefix)&#39;)</code></pre>
+<pre><code>## Errors that are not mere rearrangments of Diagnosis codes (excluding prefix)</code></pre>
+<pre class="r"><code>df_sorted_differences_diag %&gt;%
+filter( hospital_codes != audit_codes ) %&gt;%
+  distinct( row ) %&gt;% dim() %&gt;% pluck(1)</code></pre>
+<pre><code>[1] 8882</code></pre>
+<pre class="r"><code>df_audit_long %&gt;%
+  filter( audit != hospital) %&gt;% 
+  filter( startsWith( col, &#39;diagnosis&#39; )) %&gt;%
+  mutate( type = ifelse( startsWith( col, &#39;diagnosis_code&#39;), &#39;D&#39;, &#39;P&#39; ), 
+         pos = str_replace_all( col, &#39;[a-z_]&#39;,&#39;&#39;) %&gt;% as.numeric()) %&gt;%
+  select( -col) %&gt;%
+  gather( institution, code, -row, -type, -pos ) %&gt;%
+  spread( type, code ) %&gt;%
+  mutate( P = ifelse( is.na(P), &#39; &#39;, P ),
+         full = paste( P,D)) %&gt;%
+  select( -D, -P ) %&gt;%
+  spread( institution, full) %&gt;%
+  group_by( row ) %&gt;%
+  summarise( audit_codes = paste( sort( audit ), collapse=&#39; &#39;), 
+            hospital_codes =paste( sort( hospital ), collapse=&#39; &#39;) ) %&gt;% 
+  { . } -&gt; df_sorted_differences_diag_prefix
+
+cat(&quot;## number of cases where there is a problem with prefix and/or codes, separate from rearrangment&quot;)</code></pre>
+<pre><code>## number of cases where there is a problem with prefix and/or codes, separate from rearrangment</code></pre>
+<pre class="r"><code>df_sorted_differences_diag_prefix %&gt;%
+filter( hospital_codes != audit_codes ) %&gt;%
+  distinct( row ) %&gt;% dim() %&gt;% pluck(1)</code></pre>
+<pre><code>[1] 10874</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.4.4 (2018-03-15)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 16.04.6 LTS
+
+Matrix products: default
+BLAS: /usr/lib/libblas/libblas.so.3.6.0
+LAPACK: /usr/lib/lapack/liblapack.so.3.6.0
+
+locale:
+ [1] LC_CTYPE=en_AU.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_AU.UTF-8        LC_COLLATE=en_AU.UTF-8    
+ [5] LC_MONETARY=en_AU.UTF-8    LC_MESSAGES=en_AU.UTF-8   
+ [7] LC_PAPER=en_AU.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_AU.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] RPostgreSQL_0.6-2 DBI_1.0.0         janitor_1.2.0    
+ [4] forcats_0.4.0     stringr_1.4.0     dplyr_0.8.1      
+ [7] purrr_0.3.2       readr_1.3.1       tidyr_0.8.3      
+[10] tibble_2.1.2      ggplot2_3.1.1     tidyverse_1.2.1  
+[13] knitr_1.23        nvimcom_0.9-75   
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_0.2.5 xfun_0.7         haven_2.1.0      lattice_0.20-38 
+ [5] colorspace_1.4-1 generics_0.0.2   htmltools_0.3.6  yaml_2.2.0      
+ [9] rlang_0.3.4      pillar_1.4.1     glue_1.3.1       withr_2.1.2     
+[13] modelr_0.1.4     readxl_1.3.1     plyr_1.8.4       munsell_0.5.0   
+[17] gtable_0.3.0     workflowr_1.3.0  cellranger_1.1.0 rvest_0.3.4     
+[21] evaluate_0.14    broom_0.5.2      Rcpp_1.0.1       scales_1.0.0    
+[25] backports_1.1.4  jsonlite_1.6     fs_1.3.1         hms_0.4.2       
+[29] digest_0.6.19    stringi_1.4.3    grid_3.4.4       rprojroot_1.3-2 
+[33] cli_1.1.0        tools_3.4.4      magrittr_1.5     lazyeval_0.2.2  
+[37] crayon_1.3.4     whisker_0.3-2    pkgconfig_2.0.2  xml2_1.2.0      
+[41] lubridate_1.7.4  assertthat_0.2.1 rmarkdown_1.13   httr_1.4.0      
+[45] rstudioapi_0.10  R6_2.4.0         nlme_3.1-140     git2r_0.25.2    
+[49] compiler_3.4.4  </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
